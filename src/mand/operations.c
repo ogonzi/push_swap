@@ -6,7 +6,7 @@
 /*   By: ogonzale <ogonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 19:32:06 by ogonzale          #+#    #+#             */
-/*   Updated: 2022/08/16 19:49:52 by ogonzale         ###   ########.fr       */
+/*   Updated: 2022/08/16 20:45:41 by ogonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,41 @@ void	ft_push(char c, t_stck **stck_a, t_stck **stck_b)
 		(*stck_a)[size_a].value = (*stck_b)[size_b - 1].value;
 		(*stck_a)[0].size++;
 		(*stck_b)[0].size--;
+	}
+}
+
+void	ft_rotate(t_stck **stck)
+{
+	int	tmp;
+	int	size;
+	int	i;
+
+	size = (*stck)[0].size;
+	i = size;
+	tmp = (*stck)[size - 1].value;
+	while (--i >= 0)
+	{
+		if (i == 0)
+			(*stck)[i].value = tmp;
+		else
+			(*stck)[i].value = (*stck)[i - 1].value;
+	}
+}
+
+void	ft_rev_rotate(t_stck **stck)
+{
+	int	tmp;
+	int	size;
+	int	i;
+
+	size = (*stck)[0].size;
+	i = -1;
+	tmp = (*stck)[0].value;
+	while (++i < size)
+	{
+		if (i == size - 1)
+			(*stck)[i].value = tmp;
+		else
+			(*stck)[i].value = (*stck)[i + 1].value;
 	}
 }

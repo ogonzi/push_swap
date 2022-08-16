@@ -6,7 +6,7 @@
 /*   By: ogonzale <ogonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 12:46:13 by ogonzale          #+#    #+#             */
-/*   Updated: 2022/08/16 11:18:52 by ogonzale         ###   ########.fr       */
+/*   Updated: 2022/08/16 11:55:56 by ogonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,8 @@ void	ft_parse_input(int argc, char **argv, t_stck **stck_a)
 	i = 0;
 	while (i < argc - 1)
 	{
-		stck_a[i]->key = i;
-		stck_a[i]->value = ft_atoi_mod(argv[i + 1]);
-		printf("{%d, %d}\n", stck_a[i]->key, stck_a[i]->value);
+		(*stck_a)[i].key = i;
+		(*stck_a)[i].value = ft_atoi_mod(argv[i + 1]);
 		i++;
 	}
 }

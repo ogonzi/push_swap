@@ -6,7 +6,7 @@
 /*   By: ogonzale <ogonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 09:47:30 by ogonzale          #+#    #+#             */
-/*   Updated: 2022/08/16 11:20:30 by ogonzale         ###   ########.fr       */
+/*   Updated: 2022/08/16 11:57:32 by ogonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 void	ft_check_empty(const char *nptr, int *i)
 {
-	while (ft_isspace(nptr[*i]))
+	while (ft_isspace(nptr[*i]) || nptr[*i] == '\0')
 	{
 		if (nptr[*i] == '\0')
 			terminate(ERR_EMPTY);

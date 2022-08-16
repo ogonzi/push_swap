@@ -1,39 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ogonzale <ogonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/16 10:21:21 by ogonzale          #+#    #+#             */
-/*   Updated: 2022/08/16 19:27:45 by ogonzale         ###   ########.fr       */
+/*   Created: 2022/08/16 19:22:53 by ogonzale          #+#    #+#             */
+/*   Updated: 2022/08/16 19:26:51 by ogonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "push_swap.h"
 
-typedef struct s_stck
+void	ft_swap(t_stck **stck)
 {
+	int	tmp;
 	int	size;
-	int	key;
-	int	value;
-}		t_stck;
 
-/* ft_atoi_mod.c */
-
-int		ft_atoi_mod(const char *nptr);
-
-/* parse.c */
-
-void	ft_fill_stacks(int argc, char **argv, t_stck **stck_a,
-			t_stck **stck_b);
-
-/* sort.c */
-
-void	ft_sort(t_stck **stck_a, t_stck **stck_b);
-
-/* ft_swap.c */
-
-void	ft_swap(t_stck **stck);
-#endif
+	size = (*stck)[0].size;
+	tmp = (*stck)[size - 1].value;
+	(*stck)[size - 1].value = (*stck)[size - 2].value;
+	(*stck)[size - 2].value = tmp;
+}

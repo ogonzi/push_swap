@@ -6,7 +6,7 @@
 /*   By: ogonzale <ogonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 09:47:30 by ogonzale          #+#    #+#             */
-/*   Updated: 2022/08/16 11:57:32 by ogonzale         ###   ########.fr       */
+/*   Updated: 2022/08/16 19:00:08 by ogonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_check_empty(const char *nptr, int *i)
 	while (ft_isspace(nptr[*i]) || nptr[*i] == '\0')
 	{
 		if (nptr[*i] == '\0')
-			terminate(ERR_EMPTY);
+			terminate(ERROR);
 		(*i)++;
 	}
 }
@@ -38,7 +38,7 @@ void	ft_check_digit(const char *nptr, int *i)
 	while (nptr[*i] != '\0')
 	{
 		if (ft_isdigit(nptr[*i]) == 0)
-			terminate(ERR_DIGIT);
+			terminate(ERROR);
 		(*i)++;
 	}
 }
@@ -62,6 +62,6 @@ int	ft_atoi_mod(const char *nptr)
 	if (neg == 1)
 		res = -res;
 	if (res > 2147483647 || res < -2147483648)
-		terminate(ERR_INT);
+		terminate(ERROR);
 	return ((int)res);
 }

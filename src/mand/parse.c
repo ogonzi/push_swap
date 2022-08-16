@@ -6,7 +6,7 @@
 /*   By: ogonzale <ogonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 12:46:13 by ogonzale          #+#    #+#             */
-/*   Updated: 2022/08/16 17:47:39 by ogonzale         ###   ########.fr       */
+/*   Updated: 2022/08/16 18:59:17 by ogonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_check_duplicate(t_stck **stck_a, int i)
 	while (j < i)
 	{
 		if ((*stck_a)[i].value == (*stck_a)[j].value)
-			terminate(ERR_DUPL);
+			terminate(ERROR);
 		j++;
 	}
 }

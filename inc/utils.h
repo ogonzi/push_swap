@@ -6,14 +6,14 @@
 /*   By: ogonzale <ogonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 12:49:48 by ogonzale          #+#    #+#             */
-/*   Updated: 2022/08/16 12:33:08 by ogonzale         ###   ########.fr       */
+/*   Updated: 2022/08/16 12:34:38 by ogonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-
 #ifndef UTILS_H
 # define UTILS_H
+
+#include "push_swap.h"
 
 # define ERR_READ	"Error reading the file"
 # define ERR_WRITE	"Error writing to a file"

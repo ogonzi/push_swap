@@ -6,7 +6,7 @@
 /*   By: ogonzale <ogonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 19:05:10 by ogonzale          #+#    #+#             */
-/*   Updated: 2022/08/16 19:28:30 by ogonzale         ###   ########.fr       */
+/*   Updated: 2022/08/16 19:46:47 by ogonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,14 @@ void	ft_sort(t_stck **stck_a, t_stck **stck_b)
 	ft_print_stacks(stck_a, stck_b);	
 	printf("sa\n");
 	ft_swap(stck_a);
+	ft_print_stacks(stck_a, stck_b);	
+	printf("pb\n");
+	ft_push('b', stck_a, stck_b);
+	ft_print_stacks(stck_a, stck_b);
+	printf("pb\n");
+	ft_push('b', stck_a, stck_b);
+	ft_print_stacks(stck_a, stck_b);
+	printf("sb\n");
+	ft_swap(stck_b);
 	ft_print_stacks(stck_a, stck_b);	
 }

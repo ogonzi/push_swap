@@ -6,7 +6,7 @@
 /*   By: ogonzale <ogonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 10:21:21 by ogonzale          #+#    #+#             */
-/*   Updated: 2022/08/16 11:07:59 by ogonzale         ###   ########.fr       */
+/*   Updated: 2022/08/16 11:59:25 by ogonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ typedef struct s_stck
 
 /* ft_atoi_mod.c */
 
-int	ft_atoi_mod(const char *nptr);
+int		ft_atoi_mod(const char *nptr);
 
 /* parse.h */
 

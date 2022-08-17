@@ -6,7 +6,7 @@
 /*   By: ogonzale <ogonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 19:05:10 by ogonzale          #+#    #+#             */
-/*   Updated: 2022/08/17 11:27:21 by ogonzale         ###   ########.fr       */
+/*   Updated: 2022/08/17 11:58:01 by ogonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,25 +73,18 @@ void	ft_sort_three(t_stck **stck_a)
 
 void	ft_sort_four(t_stck **stck_a, t_stck **stck_b)
 {
-	int		i;
 	t_stck	min;
 
-	i = 0;
-	min = (*stck_a)[0];
-	while (++i < (*stck_a)[0].size)
-	{
-		if ((*stck_a)[i].value < min.value)
-			min = (*stck_a)[i];
-	}
+	ft_get_min(&min, stck_a);
 	if (min.key == 0)
 		ft_rev_rotate('a', stck_a);
 	else if (min.key == 1)
 	{
-		ft_rev_rotate('a', stck_a);
-		ft_rev_rotate('a', stck_a);
+		ft_rotate('a', stck_a);
+		ft_swap('a', stck_a);
 	}
 	else if (min.key == 2)
-		ft_rotate('a', stck_a);
+		ft_swap('a', stck_a);
 	if (ft_is_ordered(stck_a) == 0)
 	{
 		ft_push('b', stck_a, stck_b);
@@ -100,10 +93,39 @@ void	ft_sort_four(t_stck **stck_a, t_stck **stck_b)
 	}
 }
 
+void	ft_sort_five(t_stck **stck_a, t_stck **stck_b)
+{
+	t_stck	min;
+
+	ft_get_min(&min, stck_a);
+	if (min.key == 0)
+		ft_rev_rotate('a', stck_a);
+	else if (min.key == 1)
+	{
+		ft_rev_rotate('a', stck_a);
+		ft_rev_rotate('a', stck_a);
+	}
+	else if (min.key == 2)
+	{
+		ft_rotate('a', stck_a);
+		ft_swap('a', stck_a);
+	}
+	else if (min.key == 3)
+		ft_swap('a', stck_a);
+	if (ft_is_ordered(stck_a) == 0)
+	{
+		ft_push('b', stck_a, stck_b);
+		ft_sort_four(stck_a, stck_b);
+		ft_push('a', stck_a, stck_b);
+	}
+}
+
 void	ft_sort(t_stck **stck_a, t_stck **stck_b)
 {
 	int	size;
 
+	if (ft_is_ordered(stck_a) == 1)
+		return ;
 	size = (*stck_a)[0].size;
 	if (size == 1)
 		return ;
@@ -113,9 +135,9 @@ void	ft_sort(t_stck **stck_a, t_stck **stck_b)
 		ft_sort_three(stck_a);
 	else if (size == 4)
 		ft_sort_four(stck_a, stck_b);
-	/*
 	else if (size == 5)
 		ft_sort_five(stck_a, stck_b);
+	/*
 	else
 		ft_sort_large(stck_a, stck_b);
 	*/

@@ -6,14 +6,14 @@
 /*   By: ogonzale <ogonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 12:49:48 by ogonzale          #+#    #+#             */
-/*   Updated: 2022/08/16 19:00:30 by ogonzale         ###   ########.fr       */
+/*   Updated: 2022/08/17 11:27:09 by ogonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef UTILS_H
 # define UTILS_H
 
-#include "push_swap.h"
+# include "push_swap.h"
 
 # define ERR_READ	"Error reading the file"
 # define ERR_WRITE	"Error writing to a file"
@@ -25,4 +25,5 @@
 void	terminate(char *s);
 void	ft_allocate_stacks(t_stck **stck_a, t_stck **stck_b, int argc);
 void	ft_free_stacks(t_stck **stck_a, t_stck **stck_b);
+int		ft_is_ordered(t_stck **stck);
 #endif

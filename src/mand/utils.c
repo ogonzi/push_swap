@@ -6,7 +6,7 @@
 /*   By: ogonzale <ogonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 12:48:43 by ogonzale          #+#    #+#             */
-/*   Updated: 2022/08/16 12:32:09 by ogonzale         ###   ########.fr       */
+/*   Updated: 2022/08/17 11:25:27 by ogonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,17 @@ void	ft_free_stacks(t_stck **stck_a, t_stck **stck_b)
 {
 	free(*stck_a);
 	free(*stck_b);
+}
+
+int	ft_is_ordered(t_stck **stck)
+{
+	int	i;
+
+	i = 0;
+	while (++i < (*stck)[0].size)
+	{
+		if ((*stck)[i].value > (*stck)[i - 1].value)
+			return (0);
+	}
+	return (1);
 }

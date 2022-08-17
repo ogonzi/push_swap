@@ -6,13 +6,14 @@
 /*   By: ogonzale <ogonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 19:32:06 by ogonzale          #+#    #+#             */
-/*   Updated: 2022/08/16 20:45:41 by ogonzale         ###   ########.fr       */
+/*   Updated: 2022/08/17 10:16:00 by ogonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "ft_printf.h"
 
-void	ft_swap(t_stck **stck)
+void	ft_swap(char c, t_stck **stck)
 {
 	int	tmp;
 	int	size;
@@ -21,6 +22,7 @@ void	ft_swap(t_stck **stck)
 	tmp = (*stck)[size - 1].value;
 	(*stck)[size - 1].value = (*stck)[size - 2].value;
 	(*stck)[size - 2].value = tmp;
+	ft_printf("s%c\n", c);
 }
 
 void	ft_push(char c, t_stck **stck_a, t_stck **stck_b)
@@ -30,7 +32,6 @@ void	ft_push(char c, t_stck **stck_a, t_stck **stck_b)
 
 	size_a = (*stck_a)[0].size;
 	size_b = (*stck_b)[0].size;
-
 	if (c == 'b')
 	{
 		if (size_a == 0)
@@ -47,9 +48,10 @@ void	ft_push(char c, t_stck **stck_a, t_stck **stck_b)
 		(*stck_a)[0].size++;
 		(*stck_b)[0].size--;
 	}
+	ft_printf("p%c\n", c);
 }
 
-void	ft_rotate(t_stck **stck)
+void	ft_rotate(char c, t_stck **stck)
 {
 	int	tmp;
 	int	size;
@@ -65,9 +67,10 @@ void	ft_rotate(t_stck **stck)
 		else
 			(*stck)[i].value = (*stck)[i - 1].value;
 	}
+	ft_printf("r%c\n", c);
 }
 
-void	ft_rev_rotate(t_stck **stck)
+void	ft_rev_rotate(char c, t_stck **stck)
 {
 	int	tmp;
 	int	size;
@@ -83,4 +86,5 @@ void	ft_rev_rotate(t_stck **stck)
 		else
 			(*stck)[i].value = (*stck)[i + 1].value;
 	}
+	ft_printf("rr%c\n", c);
 }

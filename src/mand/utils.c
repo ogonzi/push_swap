@@ -6,7 +6,7 @@
 /*   By: ogonzale <ogonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 12:48:43 by ogonzale          #+#    #+#             */
-/*   Updated: 2022/08/17 11:52:01 by ogonzale         ###   ########.fr       */
+/*   Updated: 2022/08/18 10:22:20 by ogonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,17 +48,4 @@ int	ft_is_ordered(t_stck **stck)
 			return (0);
 	}
 	return (1);
-}
-
-void	ft_get_min(t_stck *min, t_stck **stck)
-{
-	int		i;
-
-	i = 0;
-	*min = (*stck)[0];
-	while (++i < (*stck)[0].size)
-	{
-		if ((*stck)[i].value < min->value)
-			*min = (*stck)[i];
-	}
 }

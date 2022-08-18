@@ -6,7 +6,7 @@
 /*   By: ogonzale <ogonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 12:49:48 by ogonzale          #+#    #+#             */
-/*   Updated: 2022/08/17 11:37:39 by ogonzale         ###   ########.fr       */
+/*   Updated: 2022/08/18 10:22:09 by ogonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,10 @@ void	terminate(char *s);
 void	ft_allocate_stacks(t_stck **stck_a, t_stck **stck_b, int argc);
 void	ft_free_stacks(t_stck **stck_a, t_stck **stck_b);
 int		ft_is_ordered(t_stck **stck);
+
+/* utils_2.c */
+
 void	ft_get_min(t_stck *min, t_stck **stck);
+void	ft_get_max(t_stck *max, t_stck **stck);
+
 #endif

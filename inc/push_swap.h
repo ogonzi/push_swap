@@ -6,7 +6,7 @@
 /*   By: ogonzale <ogonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 10:21:21 by ogonzale          #+#    #+#             */
-/*   Updated: 2022/08/18 10:16:59 by ogonzale         ###   ########.fr       */
+/*   Updated: 2022/08/18 18:54:01 by ogonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	ft_fill_stacks(int argc, char **argv, t_stck **stck_a,
 
 /* sort.c */
 
+void	ft_sort_five(t_stck **stck_a, t_stck **stck_b);
 void	ft_sort(t_stck **stck_a, t_stck **stck_b);
 
 /* operations.c */

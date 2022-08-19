@@ -6,7 +6,7 @@
 /*   By: ogonzale <ogonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 12:16:51 by ogonzale          #+#    #+#             */
-/*   Updated: 2022/08/19 11:57:19 by ogonzale         ###   ########.fr       */
+/*   Updated: 2022/08/19 12:27:00 by ogonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,16 +114,17 @@ void	ft_sort_all(t_stck **stck_a, t_stck **stck_b, int size)
 	pass = 0;
 	chunk_size = 5;
 	j = 0;
-	while (pass < 2)
+	while (j < 4)
 	{
-		size_a = (*stck_a)[0].size;
 		while ((*stck_b)[0].size != chunk_size * (pass + 1))
 			ft_push('b', stck_a, stck_b);
 		i = 0;
 		while (i < chunk_size * 2 * (pass + 1))
 		{
 			size_a = (*stck_a)[0].size;
-			if ((*stck_a)[size_a - 1].value > (*stck_b)[0].value)
+			if (i == (chunk_size * 2 * (pass + 1) - 1) && (*stck_b)[0].size != 0)
+				ft_push('a', stck_a, stck_b);
+			else if ((*stck_a)[size_a - 1].value > (*stck_b)[0].value)
 			{
 				ft_rev_rotate('b', stck_b);
 				ft_push('a', stck_a, stck_b);
@@ -131,22 +132,12 @@ void	ft_sort_all(t_stck **stck_a, t_stck **stck_b, int size)
 			ft_rotate('a', stck_a);
 			i++;
 		}
-		//while ((*stck_a)[size - 1].value > (*stck_a)[size - 2].value)
-		//	ft_rotate('a', stck_a);
-		/*
-		while ((*stck_b)[0].size != 0)
-		{
-			ft_rev_rotate('b', stck_b);
-			ft_push('a', stck_a, stck_b);
-			ft_rotate('a', stck_a);
-		}
-		*/
-		j = j + chunk_size * (pass + 1);
-		if (j == size)
-		{
-			pass++;
-			j = 0;
-		}
+		//j = j + chunk_size * (pass + 1);
+		//if (j == size)
+		//{
+			j++;
+		//	j = 0;
+		//}
 	}
 	(void)size;
 }

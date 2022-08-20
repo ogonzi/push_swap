@@ -6,7 +6,7 @@
 /*   By: ogonzale <ogonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 19:05:10 by ogonzale          #+#    #+#             */
-/*   Updated: 2022/08/17 12:16:40 by ogonzale         ###   ########.fr       */
+/*   Updated: 2022/08/20 16:16:57 by ogonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,17 +73,19 @@ void	ft_sort_three(t_stck **stck_a)
 
 void	ft_sort_four(t_stck **stck_a, t_stck **stck_b)
 {
-	t_stck	min;
+	int	min_key;
 
-	ft_get_min(&min, stck_a);
-	if (min.key == 0)
+	min_key = 0;
+	if ((*stck_b)[0].size == 1)
+		min_key = 1;
+	if ((*stck_a)[0].key == min_key)
 		ft_rev_rotate('a', stck_a);
-	else if (min.key == 1)
+	else if ((*stck_a)[1].key == min_key)
 	{
 		ft_rotate('a', stck_a);
 		ft_swap('a', stck_a);
 	}
-	else if (min.key == 2)
+	else if ((*stck_a)[2].key == min_key)
 		ft_swap('a', stck_a);
 	if (ft_is_ordered(stck_a) == 0)
 	{
@@ -95,22 +97,19 @@ void	ft_sort_four(t_stck **stck_a, t_stck **stck_b)
 
 void	ft_sort_five(t_stck **stck_a, t_stck **stck_b)
 {
-	t_stck	min;
-
-	ft_get_min(&min, stck_a);
-	if (min.key == 0)
+	if ((*stck_a)[0].key == 0)
 		ft_rev_rotate('a', stck_a);
-	else if (min.key == 1)
+	else if ((*stck_a)[1].key == 0)
 	{
 		ft_rev_rotate('a', stck_a);
 		ft_rev_rotate('a', stck_a);
 	}
-	else if (min.key == 2)
+	else if ((*stck_a)[2].key == 0)
 	{
 		ft_rotate('a', stck_a);
 		ft_swap('a', stck_a);
 	}
-	else if (min.key == 3)
+	else if ((*stck_a)[3].key == 0)
 		ft_swap('a', stck_a);
 	if (ft_is_ordered(stck_a) == 0)
 	{
@@ -137,7 +136,7 @@ void	ft_sort(t_stck **stck_a, t_stck **stck_b)
 		ft_sort_four(stck_a, stck_b);
 	else if (size == 5)
 		ft_sort_five(stck_a, stck_b);
-	else
-		ft_large_sort(stck_a, stck_b);
+	//else
+	//	ft_large_sort(stck_a, stck_b);
 	ft_print_stacks(stck_a, stck_b);
 }

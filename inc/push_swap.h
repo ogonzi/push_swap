@@ -6,7 +6,7 @@
 /*   By: ogonzale <ogonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 10:21:21 by ogonzale          #+#    #+#             */
-/*   Updated: 2022/08/18 18:54:01 by ogonzale         ###   ########.fr       */
+/*   Updated: 2022/08/20 13:14:57 by ogonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int		ft_atoi_mod(const char *nptr);
 
 void	ft_fill_stacks(int argc, char **argv, t_stck **stck_a,
 			t_stck **stck_b);
+void	ft_get_keys(t_stck **stck_a);
 
 /* sort.c */
 

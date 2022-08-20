@@ -6,7 +6,7 @@
 #    By: ogonzale <ogonzale@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/18 10:00:13 by ogonzale          #+#    #+#              #
-#    Updated: 2022/08/20 13:11:52 by ogonzale         ###   ########.fr        #
+#    Updated: 2022/08/20 16:29:00 by ogonzale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ WHITE 		:= \033[0;97m
 #Sources
 
 MAND_DIR	:= mand/
-MAND_FILES	:= push_swap parse ft_atoi_mod sort operations utils utils_2
+MAND_FILES	:= push_swap parse ft_atoi_mod sort operations large_sort utils utils_2
 
 BONUS_DIR	:= bonus/
 BONUS_FILES	:= 

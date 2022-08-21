@@ -6,7 +6,7 @@
 /*   By: ogonzale <ogonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 12:48:43 by ogonzale          #+#    #+#             */
-/*   Updated: 2022/08/18 10:22:20 by ogonzale         ###   ########.fr       */
+/*   Updated: 2022/08/21 19:20:08 by ogonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "libft.h"
 #include "utils.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 void	terminate(char *s)
 {
@@ -45,7 +46,10 @@ int	ft_is_ordered(t_stck **stck)
 	while (++i < (*stck)[0].size)
 	{
 		if ((*stck)[i].value > (*stck)[i - 1].value)
+		{
+			printf("%d\n", (*stck)[i].value);
 			return (0);
+		}
 	}
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: ogonzale <ogonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 10:21:21 by ogonzale          #+#    #+#             */
-/*   Updated: 2022/08/20 13:14:57 by ogonzale         ###   ########.fr       */
+/*   Updated: 2022/08/22 11:13:54 by ogonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	ft_swap(char c, t_stck **stck);
 void	ft_push(char c, t_stck **stck_a, t_stck **stck_b);
 void	ft_rotate(char c, t_stck **stck);
 void	ft_rev_rotate(char c, t_stck **stck);
+void	ft_rr(t_stck **stck_a, t_stck **stck_b);
 
 /* large_sort.c */
 

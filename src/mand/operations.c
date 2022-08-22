@@ -6,7 +6,7 @@
 /*   By: ogonzale <ogonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 19:32:06 by ogonzale          #+#    #+#             */
-/*   Updated: 2022/08/20 13:45:06 by ogonzale         ###   ########.fr       */
+/*   Updated: 2022/08/22 11:13:07 by ogonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,8 @@ void	ft_rotate(char c, t_stck **stck)
 			(*stck)[i].key = (*stck)[i - 1].key;
 		}
 	}
-	ft_printf("r%c\n", c);
+	if (c != 'r')
+		ft_printf("r%c\n", c);
 }
 
 void	ft_rev_rotate(char c, t_stck **stck)
@@ -106,4 +107,11 @@ void	ft_rev_rotate(char c, t_stck **stck)
 		}
 	}
 	ft_printf("rr%c\n", c);
+}
+
+void	ft_rr(t_stck **stck_a, t_stck **stck_b)
+{
+	ft_rotate('a', stck_a);
+	ft_rotate('b', stck_b);
+	ft_printf("rr\n");
 }

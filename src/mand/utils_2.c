@@ -6,7 +6,7 @@
 /*   By: ogonzale <ogonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 10:20:34 by ogonzale          #+#    #+#             */
-/*   Updated: 2022/08/22 20:24:57 by ogonzale         ###   ########.fr       */
+/*   Updated: 2022/08/22 22:11:15 by ogonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ void	ft_save_instruction(int code, int **instructions)
 void	ft_optimize_and_print_instructions(int **instructions)
 {
 	int	i;
+	int	count_ra;
+	int	count_rb;
 
 	i = 0;
 	while ((*instructions)[i] != -1)
@@ -73,14 +75,44 @@ void	ft_optimize_and_print_instructions(int **instructions)
 			ft_printf("pa\n");
 		else if ((*instructions)[i] == PB)
 			ft_printf("pb\n");
-		else if ((*instructions)[i] == RA)
-			ft_printf("ra\n");
 		else if ((*instructions)[i] == RB)
 			ft_printf("rb\n");
 		else if ((*instructions)[i] == RRA)
 			ft_printf("rra\n");
 		else if ((*instructions)[i] == RRB)
 			ft_printf("rrb\n");
+		else if ((*instructions)[i] == RA)
+		{
+			count_ra = 0;
+			while ((*instructions)[i] == RA)
+			{
+				count_ra++;
+				i++;
+			}
+			count_rb = 0;
+			while ((*instructions)[i] == RB)
+			{
+				count_rb++;
+				i++;
+			}
+			i--;
+			while (count_ra > 0 && count_rb > 0)
+			{
+				ft_printf("rr\n");
+				count_ra--;
+				count_rb--;
+			}
+			while (count_ra > 0)
+			{
+				ft_printf("ra\n");
+				count_ra--;
+			}
+			while (count_rb > 0)
+			{
+				ft_printf("rb\n");
+				count_rb--;
+			}
+		}
 		i++;
 	}
 }

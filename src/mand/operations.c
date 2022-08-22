@@ -6,11 +6,12 @@
 /*   By: ogonzale <ogonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 19:32:06 by ogonzale          #+#    #+#             */
-/*   Updated: 2022/08/22 13:26:18 by ogonzale         ###   ########.fr       */
+/*   Updated: 2022/08/22 19:57:59 by ogonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "utils.h"
 #include "ft_printf.h"
 
 void	ft_swap(char c, t_stck **stck, int **instructions)
@@ -27,6 +28,10 @@ void	ft_swap(char c, t_stck **stck, int **instructions)
 	(*stck)[size - 2].key = tmp.key;
 	if (instructions == NULL)
 		ft_printf("s%c\n", c);
+	else if (instructions != NULL && c == 'a')
+		ft_save_instruction(SA, instructions);
+	else if (instructions != NULL && c == 'b')
+		ft_save_instruction(SB, instructions);
 }
 
 void	ft_push(char c, t_stck **stck_a, t_stck **stck_b, int **instructions)
@@ -56,6 +61,10 @@ void	ft_push(char c, t_stck **stck_a, t_stck **stck_b, int **instructions)
 	}
 	if (instructions == NULL)
 		ft_printf("p%c\n", c);
+	else if (instructions != NULL && c == 'a')
+		ft_save_instruction(PA, instructions);
+	else if (instructions != NULL && c == 'b')
+		ft_save_instruction(PB, instructions);
 }
 
 void	ft_rotate(char c, t_stck **stck, int **instructions)
@@ -81,8 +90,12 @@ void	ft_rotate(char c, t_stck **stck, int **instructions)
 			(*stck)[i].key = (*stck)[i - 1].key;
 		}
 	}
-	if (c != 'r' && instructions != NULL)
+	if (instructions == NULL)
 		ft_printf("r%c\n", c);
+	else if (instructions != NULL && c == 'a')
+		ft_save_instruction(RA, instructions);
+	else if (instructions != NULL && c == 'b')
+		ft_save_instruction(RB, instructions);
 }
 
 void	ft_rev_rotate(char c, t_stck **stck, int **instructions)
@@ -108,14 +121,10 @@ void	ft_rev_rotate(char c, t_stck **stck, int **instructions)
 			(*stck)[i].key = (*stck)[i + 1].key;
 		}
 	}
-	if (instructions != NULL)
+	if (instructions == NULL)
 		ft_printf("rr%c\n", c);
-}
-
-void	ft_rr(t_stck **stck_a, t_stck **stck_b, int **instructions)
-{
-	ft_rotate('a', stck_a, 0);
-	ft_rotate('b', stck_b, 0);
-	if (instructions != NULL)
-		ft_printf("rr\n");
+	else if (instructions != NULL && c == 'a')
+		ft_save_instruction(RRA, instructions);
+	else if (instructions != NULL && c == 'b')
+		ft_save_instruction(RRB, instructions);
 }

@@ -6,15 +6,17 @@
 /*   By: ogonzale <ogonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 16:22:34 by ogonzale          #+#    #+#             */
-/*   Updated: 2022/08/22 13:16:26 by ogonzale         ###   ########.fr       */
+/*   Updated: 2022/08/22 20:26:16 by ogonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "utils.h"
+#include <stdlib.h>
 #include <stdio.h>
 
-int	ft_manage_extremes(int key_a, t_stck **stck_b, int size_b)
+int	ft_manage_extremes(int key_a, t_stck **stck_b, int size_b,
+		int **instructions)
 {
 	t_stck	min;
 	t_stck	max;
@@ -28,20 +30,20 @@ int	ft_manage_extremes(int key_a, t_stck **stck_b, int size_b)
 		while ((*stck_b)[size_b - i - 1].key != max.key)
 			i++;
 		while ((*stck_b)[size_b - 1].key != max.key)
-			ft_choose_rotation(i, size_b, 'b', stck_b);
+			ft_choose_rotation(i, size_b, 'b', stck_b, instructions);
 		return (1);
 	}
 	if (key_a < min.key)
 	{
 		while ((*stck_b)[size_b - 1].key != min.key)
-			ft_rotate('b', stck_b, 0);
-		ft_rotate('b', stck_b, 0);
+			ft_rotate('b', stck_b, instructions);
+		ft_rotate('b', stck_b, instructions);
 		return (1);
 	}
 	return (0);
 }
 
-void	ft_prepare_bucket(int key_a, t_stck **stck_b)
+void	ft_prepare_bucket(int key_a, t_stck **stck_b, int **instructions)
 {
 	int		size_b;
 	int		i;
@@ -49,17 +51,17 @@ void	ft_prepare_bucket(int key_a, t_stck **stck_b)
 	size_b = (*stck_b)[0].size;
 	if (size_b < 2)
 		return ;
-	if (ft_manage_extremes(key_a, stck_b, size_b) == 1)
+	if (ft_manage_extremes(key_a, stck_b, size_b, instructions) == 1)
 		return ;
 	i = 0;
 	while (!((*stck_b)[size_b - i - 1].key > key_a
 		&& (*stck_b)[size_b - i - 2].key < key_a))
 		i++;
 	while (!((*stck_b)[0].key > key_a && (*stck_b)[size_b - 1].key < key_a))
-		ft_choose_rotation(i, size_b, 'b', stck_b);
+		ft_choose_rotation(i, size_b, 'b', stck_b, instructions);
 }
 
-void	ft_reset_bucket(t_stck **stck_b)
+void	ft_reset_bucket(t_stck **stck_b, int **instructions)
 {
 	t_stck	min;
 	int		i;
@@ -71,7 +73,7 @@ void	ft_reset_bucket(t_stck **stck_b)
 	while ((*stck_b)[size_b - i - 1].value != min.value)
 		i++;
 	while ((*stck_b)[0].value != min.value)
-		ft_choose_rotation(i, size_b, 'b', stck_b);
+		ft_choose_rotation(i, size_b, 'b', stck_b, instructions);
 }
 
 void	ft_loop_buckets(t_stck **stck_a, t_stck **stck_b, int size_a, int **instructions)
@@ -93,27 +95,28 @@ void	ft_loop_buckets(t_stck **stck_a, t_stck **stck_b, int size_a, int **instruc
 			size_a = (*stck_a)[0].size;
 			if ((*stck_a)[size_a - 1].key < num_per_bucket * (pass + 1))
 			{
-				printf("-- Begin | %d | bucket %d --\n", (*stck_a)[size_a - 1].value, pass);
-				ft_prepare_bucket((*stck_a)[size_a - 1].key, stck_b);
-				ft_push('b', stck_a, stck_b, 0);
-				printf("-- End --\n");
+				ft_prepare_bucket((*stck_a)[size_a - 1].key, stck_b, instructions);
+				ft_push('b', stck_a, stck_b, instructions);
 				j++;
 			}
 			else
-				ft_rotate('a', stck_a, 0);
+				ft_rotate('a', stck_a, instructions);
 		}
-		ft_reset_bucket(stck_b);
+		ft_reset_bucket(stck_b, instructions);
 	}
 }
 
-void	ft_large_sort(t_stck **stck_a, t_stck **stck_b, int **instructions)
+void	ft_large_sort(t_stck **stck_a, t_stck **stck_b)
 {
 	int	size_a;
+	int	*instructions;
 
 	size_a = (*stck_a)[0].size;
-	ft_loop_buckets(stck_a, stck_b, size_a, instructions);
+	ft_loop_buckets(stck_a, stck_b, size_a, &instructions);
 	while ((*stck_b)[0].size > 0)
-		ft_push('a', stck_a, stck_b, 0);
+		ft_push('a', stck_a, stck_b, &instructions);
+	ft_optimize_and_print_instructions(&instructions);
+	free(instructions);
 	if (ft_is_ordered(stck_a))
 		printf("SUCCESS!\n");
 	else

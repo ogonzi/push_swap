@@ -6,11 +6,13 @@
 /*   By: ogonzale <ogonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 10:20:34 by ogonzale          #+#    #+#             */
-/*   Updated: 2022/08/22 13:15:39 by ogonzale         ###   ########.fr       */
+/*   Updated: 2022/08/22 20:24:57 by ogonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "ft_printf.h"
+#include "utils.h"
 
 void	ft_get_min(t_stck *min, t_stck **stck)
 {
@@ -38,10 +40,47 @@ void	ft_get_max(t_stck *max, t_stck **stck)
 	}
 }
 
-void	ft_choose_rotation(int pos, int size, char c, t_stck **stck)
+void	ft_choose_rotation(int pos, int size, char c, t_stck **stck, int **instructions)
 {
 	if (pos <= (size / 2))
-		ft_rotate(c, stck, 0);
+		ft_rotate(c, stck, instructions);
 	else
-		ft_rev_rotate(c, stck, 0);
+		ft_rev_rotate(c, stck, instructions);
+}
+
+void	ft_save_instruction(int code, int **instructions)
+{
+	int	i;
+
+	i = 0;
+	while ((*instructions)[i] != -1)
+		i++;
+	(*instructions)[i] = code;
+}
+
+void	ft_optimize_and_print_instructions(int **instructions)
+{
+	int	i;
+
+	i = 0;
+	while ((*instructions)[i] != -1)
+	{
+		if ((*instructions)[i] == SA)
+			ft_printf("sa\n");
+		else if ((*instructions)[i] == SB)
+			ft_printf("sb\n");
+		else if ((*instructions)[i] == PA)
+			ft_printf("pa\n");
+		else if ((*instructions)[i] == PB)
+			ft_printf("pb\n");
+		else if ((*instructions)[i] == RA)
+			ft_printf("ra\n");
+		else if ((*instructions)[i] == RB)
+			ft_printf("rb\n");
+		else if ((*instructions)[i] == RRA)
+			ft_printf("rra\n");
+		else if ((*instructions)[i] == RRB)
+			ft_printf("rrb\n");
+		i++;
+	}
 }

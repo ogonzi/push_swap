@@ -6,7 +6,7 @@
 /*   By: ogonzale <ogonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 12:48:43 by ogonzale          #+#    #+#             */
-/*   Updated: 2022/08/22 13:28:22 by ogonzale         ###   ########.fr       */
+/*   Updated: 2022/08/22 20:14:44 by ogonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ void	ft_allocate_instructions(int size, int num_buckets, int size_buckets,
 		i++;
 	}
 	theoretical_limit += size * (1 + size_buckets / 2);
+	if (theoretical_limit < 100)
+		theoretical_limit = 100;
 	*instructions = malloc(sizeof(int) * theoretical_limit);
 	if (*instructions == NULL)
 		terminate(ERR_MEM);

@@ -6,7 +6,7 @@
 /*   By: ogonzale <ogonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 19:05:10 by ogonzale          #+#    #+#             */
-/*   Updated: 2022/08/22 13:17:00 by ogonzale         ###   ########.fr       */
+/*   Updated: 2022/08/22 20:00:44 by ogonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ void	ft_sort_five(t_stck **stck_a, t_stck **stck_b)
 	}
 }
 
-void	ft_sort(t_stck **stck_a, t_stck **stck_b, int **instructions)
+void	ft_sort(t_stck **stck_a, t_stck **stck_b)
 {
 	int	size;
 
@@ -137,6 +137,6 @@ void	ft_sort(t_stck **stck_a, t_stck **stck_b, int **instructions)
 	else if (size == 5)
 		ft_sort_five(stck_a, stck_b);
 	else
-		ft_large_sort(stck_a, stck_b, instructions);
+		ft_large_sort(stck_a, stck_b);
 	ft_print_stacks(stck_a, stck_b);
 }

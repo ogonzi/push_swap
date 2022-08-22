@@ -6,7 +6,7 @@
 /*   By: ogonzale <ogonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 12:49:48 by ogonzale          #+#    #+#             */
-/*   Updated: 2022/08/18 10:22:09 by ogonzale         ###   ########.fr       */
+/*   Updated: 2022/08/22 10:49:55 by ogonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,5 @@ int		ft_is_ordered(t_stck **stck);
 
 void	ft_get_min(t_stck *min, t_stck **stck);
 void	ft_get_max(t_stck *max, t_stck **stck);
-
+void	ft_choose_rotation(int pos, int size, char c, t_stck **stck);
 #endif

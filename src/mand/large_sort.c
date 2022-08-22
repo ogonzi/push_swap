@@ -6,7 +6,7 @@
 /*   By: ogonzale <ogonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 16:22:34 by ogonzale          #+#    #+#             */
-/*   Updated: 2022/08/21 19:52:39 by ogonzale         ###   ########.fr       */
+/*   Updated: 2022/08/22 11:02:12 by ogonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,12 @@
 #include "utils.h"
 #include <stdio.h>
 
-void	ft_prepare_bucket(int key_a, t_stck **stck_b)
+int	ft_manage_extremes(int key_a, t_stck **stck_b, int size_b)
 {
-	int		size_b;
-	t_stck	max;
 	t_stck	min;
+	t_stck	max;
 	int		i;
-	int		j;
 
-	size_b = (*stck_b)[0].size;
-	if (size_b < 2)
-		return ;
 	ft_get_max(&max, stck_b);
 	ft_get_min(&min, stck_b);
 	if (key_a > max.key)
@@ -33,40 +28,35 @@ void	ft_prepare_bucket(int key_a, t_stck **stck_b)
 		while ((*stck_b)[size_b - i - 1].key != max.key)
 			i++;
 		while ((*stck_b)[size_b - 1].key != max.key)
-		{
-			if (i <= size_b / 2)
-				ft_rotate('b', stck_b);
-			else
-				ft_rev_rotate('b', stck_b);
-		}
+			ft_choose_rotation(i, size_b, 'b', stck_b);
+		return (1);
 	}
 	if (key_a < min.key)
 	{
 		while ((*stck_b)[size_b - 1].key != min.key)
 			ft_rotate('b', stck_b);
 		ft_rotate('b', stck_b);
+		return (1);
 	}
-	if (key_a < min.key || key_a > max.key)
+	return (0);
+}
+
+void	ft_prepare_bucket(int key_a, t_stck **stck_b)
+{
+	int		size_b;
+	int		i;
+
+	size_b = (*stck_b)[0].size;
+	if (size_b < 2)
+		return ;
+	if (ft_manage_extremes(key_a, stck_b, size_b) == 1)
 		return ;
 	i = 0;
-	while (i < size_b - 1)
-	{
-		if ((*stck_b)[size_b - i - 1].key > key_a && (*stck_b)[size_b - i - 2].key < key_a)
-			break ;
+	while (!((*stck_b)[size_b - i - 1].key > key_a
+		&& (*stck_b)[size_b - i - 2].key < key_a))
 		i++;
-	}
-	j = 0;
-	while (j < size_b)
-	{
-		
-		if ((*stck_b)[0].key > key_a && (*stck_b)[size_b - 1].key < key_a)
-			break ;
-		if (i <= (size_b / 2))
-			ft_rotate('b', stck_b);
-		else
-			ft_rev_rotate('b', stck_b);
-		j++;
-	}
+	while (!((*stck_b)[0].key > key_a && (*stck_b)[size_b - 1].key < key_a))
+		ft_choose_rotation(i, size_b, 'b', stck_b);
 }
 
 void	ft_reset_bucket(t_stck **stck_b)
@@ -81,13 +71,7 @@ void	ft_reset_bucket(t_stck **stck_b)
 	while ((*stck_b)[size_b - i - 1].value != min.value)
 		i++;
 	while ((*stck_b)[0].value != min.value)
-	{
-		if (i <= size_b / 2)
-			ft_rotate('b', stck_b);
-		else
-			ft_rev_rotate('b', stck_b);
-	
-	}
+		ft_choose_rotation(i, size_b, 'b', stck_b);
 }
 
 void	ft_loop_buckets(t_stck **stck_a, t_stck **stck_b, int size_a)

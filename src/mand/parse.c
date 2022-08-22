@@ -6,7 +6,7 @@
 /*   By: ogonzale <ogonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 12:46:13 by ogonzale          #+#    #+#             */
-/*   Updated: 2022/08/20 13:51:52 by ogonzale         ###   ########.fr       */
+/*   Updated: 2022/08/22 11:07:00 by ogonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,23 +33,20 @@ void	ft_get_keys(t_stck **stck_a)
 {
 	int		i;
 	int		j;
-	int		k;
 	int		min;
 
 	j = 0;
 	while (j < (*stck_a)[0].size)
 	{
-		k = 0;
-		while ((*stck_a)[k].key >= 0)
-			k++;
-		min = (*stck_a)[k].value;
-		while (++k < (*stck_a)[0].size)
-		{
-			if ((*stck_a)[k].value < min && (*stck_a)[k].key < 0)
-				min = (*stck_a)[k].value;
-		}
 		i = 0;
-		while (i < (*stck_a)[0].size)
+		while ((*stck_a)[i].key >= 0)
+			i++;
+		min = (*stck_a)[i].value;
+		while (++i < (*stck_a)[0].size)
+			if ((*stck_a)[i].value < min && (*stck_a)[i].key < 0)
+				min = (*stck_a)[i].value;
+		i = -1;
+		while (++i < (*stck_a)[0].size)
 		{
 			if ((*stck_a)[i].value == min)
 			{
@@ -57,7 +54,6 @@ void	ft_get_keys(t_stck **stck_a)
 				j++;
 				break ;
 			}
-			i++;
 		}
 	}
 }

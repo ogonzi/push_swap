@@ -6,7 +6,7 @@
 /*   By: ogonzale <ogonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 10:20:34 by ogonzale          #+#    #+#             */
-/*   Updated: 2022/08/22 11:09:37 by ogonzale         ###   ########.fr       */
+/*   Updated: 2022/08/22 13:15:39 by ogonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	ft_get_max(t_stck *max, t_stck **stck)
 void	ft_choose_rotation(int pos, int size, char c, t_stck **stck)
 {
 	if (pos <= (size / 2))
-		ft_rotate(c, stck);
+		ft_rotate(c, stck, 0);
 	else
-		ft_rev_rotate(c, stck);
+		ft_rev_rotate(c, stck, 0);
 }

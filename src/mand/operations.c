@@ -6,14 +6,14 @@
 /*   By: ogonzale <ogonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 19:32:06 by ogonzale          #+#    #+#             */
-/*   Updated: 2022/08/22 11:13:07 by ogonzale         ###   ########.fr       */
+/*   Updated: 2022/08/22 13:26:18 by ogonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "ft_printf.h"
 
-void	ft_swap(char c, t_stck **stck)
+void	ft_swap(char c, t_stck **stck, int **instructions)
 {
 	t_stck	tmp;
 	int		size;
@@ -25,10 +25,11 @@ void	ft_swap(char c, t_stck **stck)
 	(*stck)[size - 1].key = (*stck)[size - 2].key;
 	(*stck)[size - 2].value = tmp.value;
 	(*stck)[size - 2].key = tmp.key;
-	ft_printf("s%c\n", c);
+	if (instructions == NULL)
+		ft_printf("s%c\n", c);
 }
 
-void	ft_push(char c, t_stck **stck_a, t_stck **stck_b)
+void	ft_push(char c, t_stck **stck_a, t_stck **stck_b, int **instructions)
 {
 	int	size_a;
 	int	size_b;
@@ -53,10 +54,11 @@ void	ft_push(char c, t_stck **stck_a, t_stck **stck_b)
 		(*stck_a)[0].size++;
 		(*stck_b)[0].size--;
 	}
-	ft_printf("p%c\n", c);
+	if (instructions == NULL)
+		ft_printf("p%c\n", c);
 }
 
-void	ft_rotate(char c, t_stck **stck)
+void	ft_rotate(char c, t_stck **stck, int **instructions)
 {
 	t_stck	tmp;
 	int		size;
@@ -79,11 +81,11 @@ void	ft_rotate(char c, t_stck **stck)
 			(*stck)[i].key = (*stck)[i - 1].key;
 		}
 	}
-	if (c != 'r')
+	if (c != 'r' && instructions != NULL)
 		ft_printf("r%c\n", c);
 }
 
-void	ft_rev_rotate(char c, t_stck **stck)
+void	ft_rev_rotate(char c, t_stck **stck, int **instructions)
 {
 	t_stck	tmp;
 	int		size;
@@ -106,12 +108,14 @@ void	ft_rev_rotate(char c, t_stck **stck)
 			(*stck)[i].key = (*stck)[i + 1].key;
 		}
 	}
-	ft_printf("rr%c\n", c);
+	if (instructions != NULL)
+		ft_printf("rr%c\n", c);
 }
 
-void	ft_rr(t_stck **stck_a, t_stck **stck_b)
+void	ft_rr(t_stck **stck_a, t_stck **stck_b, int **instructions)
 {
-	ft_rotate('a', stck_a);
-	ft_rotate('b', stck_b);
-	ft_printf("rr\n");
+	ft_rotate('a', stck_a, 0);
+	ft_rotate('b', stck_b, 0);
+	if (instructions != NULL)
+		ft_printf("rr\n");
 }

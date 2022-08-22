@@ -7,3 +7,4 @@
 .cache_exists
 .gdb_history
 *.swp
+output.txt

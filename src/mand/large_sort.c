@@ -6,7 +6,7 @@
 /*   By: ogonzale <ogonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 16:22:34 by ogonzale          #+#    #+#             */
-/*   Updated: 2022/08/23 11:55:48 by ogonzale         ###   ########.fr       */
+/*   Updated: 2022/08/23 20:27:54 by ogonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,20 +82,23 @@ void	ft_loop_buckets(t_stck **stck_a, t_stck **stck_b, int size_a, int **instruc
 	int	num_per_bucket;
 	int	j;
 	int	pass;
+	int	size;
 
 	num_buckets = 0.015 * (*stck_a)[0].size + 3.5;
 	num_per_bucket = (*stck_a)[0].size / num_buckets;
 	ft_allocate_instructions(size_a, num_buckets, num_per_bucket, instructions); 
 	j = 0;
 	pass = -1;
+	size = size_a;
 	while (++pass < 2 * num_buckets + 1)
 	{
 		if (pass == (num_buckets + 1) / 2)
 			num_per_bucket /= 2;
-		while (j < num_per_bucket * (pass + 1) && (*stck_a)[0].size > 0)
+		while (j < num_per_bucket * (pass + 1) && (*stck_a)[0].size > 1)
 		{
 			size_a = (*stck_a)[0].size;
-			if ((*stck_a)[size_a - 1].key < num_per_bucket * (pass + 1))
+			if ((*stck_a)[size_a - 1].key < num_per_bucket * (pass + 1)
+						&& (*stck_a)[size_a - 1].key != size - 1)
 			{
 				ft_prepare_stack((*stck_a)[size_a - 1].key, stck_b, instructions);
 				ft_push('b', stck_a, stck_b, instructions);

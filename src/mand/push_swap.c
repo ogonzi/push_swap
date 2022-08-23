@@ -6,7 +6,7 @@
 /*   By: ogonzale <ogonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 11:00:53 by ogonzale          #+#    #+#             */
-/*   Updated: 2022/08/22 19:47:17 by ogonzale         ###   ########.fr       */
+/*   Updated: 2022/08/23 08:22:41 by ogonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	main(int argc, char **argv)
 	ft_fill_stacks(argc, argv, &stck_a, &stck_b);
 	ft_get_keys(&stck_a);
 	ft_sort(&stck_a, &stck_b);
-	ft_free_stacks(&stck_a, &stck_b);
+	free(stck_a);
+	free(stck_b);
 	return (0);
 }

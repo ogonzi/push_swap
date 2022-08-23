@@ -6,7 +6,7 @@
 /*   By: ogonzale <ogonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 12:48:43 by ogonzale          #+#    #+#             */
-/*   Updated: 2022/08/22 20:14:44 by ogonzale         ###   ########.fr       */
+/*   Updated: 2022/08/23 08:23:03 by ogonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,6 @@ void	ft_allocate_instructions(int size, int num_buckets, int size_buckets,
 		(*instructions)[i] = -1;
 		i++;
 	}
-}
-
-void	ft_free_stacks(t_stck **stck_a, t_stck **stck_b)
-{
-	free(*stck_a);
-	free(*stck_b);
 }
 
 int	ft_is_ordered(t_stck **stck)

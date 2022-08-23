@@ -6,7 +6,7 @@
 /*   By: ogonzale <ogonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 19:32:06 by ogonzale          #+#    #+#             */
-/*   Updated: 2022/08/22 19:57:59 by ogonzale         ###   ########.fr       */
+/*   Updated: 2022/08/23 08:52:36 by ogonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	ft_swap(char c, t_stck **stck, int **instructions)
 	int		size;
 
 	size = (*stck)[0].size;
+	if (size < 2)
+		return ;
 	tmp.value = (*stck)[size - 1].value;
 	tmp.key = (*stck)[size - 1].key;
 	(*stck)[size - 1].value = (*stck)[size - 2].value;

@@ -6,7 +6,7 @@
 #    By: ogonzale <ogonzale@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/18 10:00:13 by ogonzale          #+#    #+#              #
-#    Updated: 2022/08/24 12:05:46 by ogonzale         ###   ########.fr        #
+#    Updated: 2022/08/24 16:57:03 by ogonzale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,7 @@ MAND_FILES	:= push_swap parse ft_atoi_mod sort operations large_sort utils \
 
 BONUS_DIR	:= bonus/
 BONUS_FILES	:= checker_bonus parse_bonus ft_atoi_mod_bonus operations_bonus \
-			   utils_bonus utils_2_bonus
+			   utils_bonus follow_instructions_bonus
 
 SRC_FILES	= $(addprefix $(MAND_DIR), $(MAND_FILES))
 SRC_BFILES	= $(addprefix $(BONUS_DIR), $(BONUS_FILES))

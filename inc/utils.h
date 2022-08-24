@@ -6,7 +6,7 @@
 /*   By: ogonzale <ogonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 12:49:48 by ogonzale          #+#    #+#             */
-/*   Updated: 2022/08/24 11:01:46 by ogonzale         ###   ########.fr       */
+/*   Updated: 2022/08/24 17:19:21 by ogonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@
 # define ERR_WRITE	"Error writing to a file"
 # define ERR_MEM	"Error allocating memory"
 # define ERROR		"Error"
+
+typedef struct s_count
+{
+	int	ra;
+	int	rb;
+}		t_count;
 
 /* utils.c */
 

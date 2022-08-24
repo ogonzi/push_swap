@@ -6,7 +6,7 @@
 /*   By: ogonzale <ogonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 16:22:34 by ogonzale          #+#    #+#             */
-/*   Updated: 2022/08/24 11:02:48 by ogonzale         ###   ########.fr       */
+/*   Updated: 2022/08/24 17:12:36 by ogonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,8 +128,4 @@ void	ft_large_sort(t_stck **stck_a, t_stck **stck_b)
 		ft_push('a', stck_a, stck_b, &instructions);
 	ft_optimize_and_print_instructions(&instructions);
 	free(instructions);
-	if (ft_is_ordered(stck_a))
-		printf("SUCCESS!\n");
-	else
-		printf("KO\n");
 }

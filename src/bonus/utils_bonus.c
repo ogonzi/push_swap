@@ -6,7 +6,7 @@
 /*   By: ogonzale <ogonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 12:48:43 by ogonzale          #+#    #+#             */
-/*   Updated: 2022/08/24 12:39:20 by ogonzale         ###   ########.fr       */
+/*   Updated: 2022/08/24 17:20:59 by ogonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,27 @@ int	ft_is_ordered(t_stck **stck)
 			return (0);
 	}
 	return (1);
+}
+
+int	ft_check_combo(char *instruction, t_stck **stck_a, t_stck **stck_b)
+{
+	if (ft_strncmp(instruction, "ss\n", 3) == 0)
+	{
+		ft_swap(stck_a);
+		ft_swap(stck_b);
+		return (1);
+	}
+	if (ft_strncmp(instruction, "rr\n", 3) == 0)
+	{
+		ft_rotate(stck_a);
+		ft_rotate(stck_b);
+		return (1);
+	}
+	if (ft_strncmp(instruction, "rrr\n", 4) == 0)
+	{
+		ft_rev_rotate(stck_a);
+		ft_rev_rotate(stck_b);
+		return (1);
+	}
+	return (0);
 }

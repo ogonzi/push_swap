@@ -6,13 +6,14 @@
 /*   By: ogonzale <ogonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 10:20:34 by ogonzale          #+#    #+#             */
-/*   Updated: 2022/08/24 11:11:47 by ogonzale         ###   ########.fr       */
+/*   Updated: 2022/08/24 17:20:07 by ogonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "ft_printf.h"
 #include "utils.h"
+#include <stdio.h>
 
 void	ft_get_limits(t_stck *min, t_stck *max, t_stck **stck)
 {
@@ -53,27 +54,30 @@ void	ft_save_instruction(int code, int **instructions)
 
 void	ft_handle_ra(int **instructions, int *i)
 {
-	int	count_ra;
-	int	count_rb;
+	t_count	count;
 
-	count_ra = 0;
+	count.ra = 0;
 	while ((*instructions)[*i] == RA)
 	{
-		count_ra++;
+		count.ra++;
 		(*i)++;
 	}
-	count_rb = 0;
+	count.rb = 0;
 	while ((*instructions)[*i] == RB)
 	{
-		count_rb++;
+		count.rb++;
 		(*i)++;
 	}
 	(*i)--;
-	while (count_ra-- > 0 && count_rb-- > 0)
+	while (count.ra > 0 && count.rb > 0)
+	{
 		ft_printf("rr\n");
-	while (count_ra-- > 0)
+		count.ra--;
+		count.rb--;
+	}
+	while (count.ra-- > 0)
 		ft_printf("ra\n");
-	while (count_rb-- > 0)
+	while (count.rb-- > 0)
 		ft_printf("rb\n");
 }
 

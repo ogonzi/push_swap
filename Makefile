@@ -6,14 +6,14 @@
 #    By: ogonzale <ogonzale@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/18 10:00:13 by ogonzale          #+#    #+#              #
-#    Updated: 2022/08/20 16:29:00 by ogonzale         ###   ########.fr        #
+#    Updated: 2022/08/24 12:05:46 by ogonzale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Standard
 
 NAME 		:= push_swap
-BNAME		:= push_swap_bonus
+BNAME		:= checker
 INC		 	:= inc/
 LIBFT_DIR	:= lib/libft/
 LIBFT		:= $(LIBFT_DIR)libft.a
@@ -42,10 +42,12 @@ WHITE 		:= \033[0;97m
 #Sources
 
 MAND_DIR	:= mand/
-MAND_FILES	:= push_swap parse ft_atoi_mod sort operations large_sort utils utils_2
+MAND_FILES	:= push_swap parse ft_atoi_mod sort operations large_sort utils \
+			   utils_2
 
 BONUS_DIR	:= bonus/
-BONUS_FILES	:= 
+BONUS_FILES	:= checker_bonus parse_bonus ft_atoi_mod_bonus operations_bonus \
+			   utils_bonus utils_2_bonus
 
 SRC_FILES	= $(addprefix $(MAND_DIR), $(MAND_FILES))
 SRC_BFILES	= $(addprefix $(BONUS_DIR), $(BONUS_FILES))
@@ -99,7 +101,7 @@ fclean:	clean
 re:	fclean all
 	@echo "$(GREEN)Cleaned and rebuilt everything for $(NAME).$(DEF_COLOR)"
 
-#bonus:	$(BNAME)
+bonus:	$(BNAME)
 
 $(BNAME):	$(BOBJ) $(LIBFT)
 	@$(CC) $(CFLAGS) $(BOBJ) $(LIBFT) -o $(BNAME)

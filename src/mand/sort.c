@@ -6,35 +6,13 @@
 /*   By: ogonzale <ogonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 19:05:10 by ogonzale          #+#    #+#             */
-/*   Updated: 2022/08/22 20:00:44 by ogonzale         ###   ########.fr       */
+/*   Updated: 2022/08/24 11:15:58 by ogonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "ft_printf.h"
 #include "utils.h"
-
-void	ft_print_stacks(t_stck **stck_a, t_stck **stck_b)
-{
-	int	i;
-
-	ft_printf("\ta: ");
-	i = 0;
-	while (i < (*stck_a)[0].size)
-	{
-		ft_printf("%d ", (*stck_a)[i].value);
-		i++;
-	}
-	ft_printf("\n");
-	ft_printf("\tb: ");
-	i = 0;
-	while (i < (*stck_b)[0].size)
-	{
-		ft_printf("%d ", (*stck_b)[i].value);
-		i++;
-	}
-	ft_printf("\n");
-}
 
 void	ft_sort_two(t_stck **stck_a)
 {
@@ -138,5 +116,4 @@ void	ft_sort(t_stck **stck_a, t_stck **stck_b)
 		ft_sort_five(stck_a, stck_b);
 	else
 		ft_large_sort(stck_a, stck_b);
-	ft_print_stacks(stck_a, stck_b);
 }

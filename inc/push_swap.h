@@ -6,7 +6,7 @@
 /*   By: ogonzale <ogonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 10:21:21 by ogonzale          #+#    #+#             */
-/*   Updated: 2022/08/22 19:47:50 by ogonzale         ###   ########.fr       */
+/*   Updated: 2022/08/24 11:20:49 by ogonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,21 @@ typedef struct s_stck
 	int	key;
 	int	value;
 }		t_stck;
+
+typedef struct s_size
+{
+	int	a;
+	int	b;
+}		t_size;
+
+typedef struct s_buckets
+{
+	int	count;
+	int	num_per_bucket;
+	int	pass;
+	int	key;
+	int	total_size;
+}		t_buckets;
 
 /* ft_atoi_mod.c */
 

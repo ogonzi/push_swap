@@ -6,7 +6,7 @@
 /*   By: ogonzale <ogonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 12:48:43 by ogonzale          #+#    #+#             */
-/*   Updated: 2022/08/23 08:23:03 by ogonzale         ###   ########.fr       */
+/*   Updated: 2022/08/24 10:22:13 by ogonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	ft_allocate_instructions(int size, int num_buckets, int size_buckets,
 {
 	int	theoretical_limit;
 	int	i;
-	
+
 	i = 0;
 	theoretical_limit = 0;
 	while (i < num_buckets)

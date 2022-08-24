@@ -6,7 +6,7 @@
 /*   By: ogonzale <ogonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 19:32:06 by ogonzale          #+#    #+#             */
-/*   Updated: 2022/08/23 08:52:36 by ogonzale         ###   ########.fr       */
+/*   Updated: 2022/08/24 11:34:10 by ogonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,36 +36,31 @@ void	ft_swap(char c, t_stck **stck, int **instructions)
 		ft_save_instruction(SB, instructions);
 }
 
+void	ft_execute_push(t_stck **to, t_stck **from, int size_to, int size_from)
+{
+	(*to)[size_to].value = (*from)[size_from - 1].value;
+	(*to)[size_to].key = (*from)[size_from - 1].key;
+	(*to)[0].size++;
+	(*from)[0].size--;
+}
+
 void	ft_push(char c, t_stck **stck_a, t_stck **stck_b, int **instructions)
 {
-	int	size_a;
-	int	size_b;
+	t_size	size;
 
-	size_a = (*stck_a)[0].size;
-	size_b = (*stck_b)[0].size;
+	size.a = (*stck_a)[0].size;
+	size.b = (*stck_b)[0].size;
+	if ((c == 'b' && size.a == 0) || (c == 'a' && size.b == 0))
+		return ;
 	if (c == 'b')
-	{
-		if (size_a == 0)
-			return ;
-		(*stck_b)[size_b].value = (*stck_a)[size_a - 1].value;
-		(*stck_b)[size_b].key = (*stck_a)[size_a - 1].key;
-		(*stck_b)[0].size++;
-		(*stck_a)[0].size--;
-	}
+		ft_execute_push(stck_b, stck_a, size.b, size.a);
 	else if (c == 'a')
-	{
-		if (size_b == 0)
-			return ;
-		(*stck_a)[size_a].value = (*stck_b)[size_b - 1].value;
-		(*stck_a)[size_a].key = (*stck_b)[size_b - 1].key;
-		(*stck_a)[0].size++;
-		(*stck_b)[0].size--;
-	}
+		ft_execute_push(stck_a, stck_b, size.a, size.b);
 	if (instructions == NULL)
 		ft_printf("p%c\n", c);
-	else if (instructions != NULL && c == 'a')
+	else if (c == 'a')
 		ft_save_instruction(PA, instructions);
-	else if (instructions != NULL && c == 'b')
+	else if (c == 'b')
 		ft_save_instruction(PB, instructions);
 }
 
@@ -85,12 +80,10 @@ void	ft_rotate(char c, t_stck **stck, int **instructions)
 		{
 			(*stck)[i].value = tmp.value;
 			(*stck)[i].key = tmp.key;
+			break ;
 		}
-		else
-		{
-			(*stck)[i].value = (*stck)[i - 1].value;
-			(*stck)[i].key = (*stck)[i - 1].key;
-		}
+		(*stck)[i].value = (*stck)[i - 1].value;
+		(*stck)[i].key = (*stck)[i - 1].key;
 	}
 	if (instructions == NULL)
 		ft_printf("r%c\n", c);
@@ -116,12 +109,10 @@ void	ft_rev_rotate(char c, t_stck **stck, int **instructions)
 		{
 			(*stck)[i].value = tmp.value;
 			(*stck)[i].key = tmp.key;
+			break ;
 		}
-		else
-		{
-			(*stck)[i].value = (*stck)[i + 1].value;
-			(*stck)[i].key = (*stck)[i + 1].key;
-		}
+		(*stck)[i].value = (*stck)[i + 1].value;
+		(*stck)[i].key = (*stck)[i + 1].key;
 	}
 	if (instructions == NULL)
 		ft_printf("rr%c\n", c);

@@ -6,7 +6,7 @@
 /*   By: ogonzale <ogonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 12:50:44 by ogonzale          #+#    #+#             */
-/*   Updated: 2022/08/30 13:16:10 by ogonzale         ###   ########.fr       */
+/*   Updated: 2022/08/30 18:26:29 by ogonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,20 @@ void	ft_push_last_quarter_to_a(t_stck **stck_a, t_stck **stck_b,
 		ft_rotate('b', stck_b, instructions);
 }
 
-void	ft_split_buckets(t_stck **stck_a, t_stck **stck_b, t_buckets buckets,
+/*
+ * [ft_split_buckets]
+ * 	1.	Push the keys larger than 1/4 to b.
+ * 	2.	Push the keys larger than 2/4 to a.
+ * 	3.	Push the keys larger than 3/4 to a.
+ * 	4.	Push the remaining keys to a, leaving the two smallest in b,
+ * 		rotating appropietly.
+ */
+
+void	ft_split_buckets(t_stck **stck_a, t_stck **stck_b, t_buckets *buckets,
 			int **instructions)
 {
-	ft_push_quarter_to_b(stck_a, stck_b, buckets, instructions);
-	ft_push_two_quarters_to_a(stck_a, stck_b, buckets, instructions);
+	ft_push_quarter_to_b(stck_a, stck_b, *buckets, instructions);
+	ft_push_two_quarters_to_a(stck_a, stck_b, *buckets, instructions);
 	ft_push_last_quarter_to_a(stck_a, stck_b, instructions);
+	buckets->key += 2;
 }

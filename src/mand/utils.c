@@ -6,7 +6,7 @@
 /*   By: ogonzale <ogonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 12:48:43 by ogonzale          #+#    #+#             */
-/*   Updated: 2022/08/30 13:37:42 by ogonzale         ###   ########.fr       */
+/*   Updated: 2022/08/30 18:38:21 by ogonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,20 @@ void	ft_allocate_stacks(t_stck **stck_a, t_stck **stck_b, int argc)
 		terminate(ERR_MEM);
 }
 
+/*
+ * [ft_allocate_instructions]
+ * A theoretical limit for the number of instructions is computed:
+ * 	1.	To split the buckets into 4 
+ * 		-> 2 * size
+ * 	2.	To push all the buckets into b, rotating a
+ * 		-> sum_(i=0)^num_buckets(size - i * size_buckets)
+ * 	3.	To push each number into the correct position in b
+ * 		-> size * (1 + size_buckets / 4)
+ * 	Since the theoretical limit does not work for really small stacks,
+ * 	a safeguard is added if the computed theoretical limit is smaller 
+ * 	than 100.
+ */
+
 void	ft_allocate_instructions(int size, int num_buckets, int size_buckets,
 			int **instructions)
 {
@@ -40,12 +54,13 @@ void	ft_allocate_instructions(int size, int num_buckets, int size_buckets,
 
 	i = 0;
 	theoretical_limit = 0;
+	theoretical_limit += 2 * size;
 	while (i < num_buckets)
 	{
 		theoretical_limit += size - i * size_buckets;
 		i++;
 	}
-	theoretical_limit += size * (1 + size_buckets / 2);
+	theoretical_limit += size * (1 + size_buckets / 4);
 	if (theoretical_limit < 100)
 		theoretical_limit = 100;
 	*instructions = malloc(sizeof(int) * theoretical_limit);

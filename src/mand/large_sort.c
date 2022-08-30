@@ -6,7 +6,7 @@
 /*   By: ogonzale <ogonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 16:22:34 by ogonzale          #+#    #+#             */
-/*   Updated: 2022/08/30 13:41:48 by ogonzale         ###   ########.fr       */
+/*   Updated: 2022/08/30 18:24:22 by ogonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,13 @@
 #include "utils.h"
 #include <stdlib.h>
 #include <stdio.h>
+
+/*
+ * [ft_manage_extremes]
+ * If the value to push is an extreme, b is rotated appropiately and 1
+ * is returned.
+ * If it is not an extreme, 0 is returned and nothing is done.
+ */
 
 int	ft_manage_extremes(int key_a, t_stck **stck_b, int size_b,
 		int **instructions)
@@ -41,6 +48,16 @@ int	ft_manage_extremes(int key_a, t_stck **stck_b, int size_b,
 	}
 	return (0);
 }
+
+/*
+ * [ft_prepare_and_push]
+ * Firstly the cases if size_b < 2 and if the pushed value is an extreme in
+ * b are handleled.
+ * Seconly the number of positions from the top of b to the future position
+ * of the value to push are calculated (i).
+ * Lastly, the most appropiate rotation is chosen so that the value is pushed
+ * to the correct location.
+ */
 
 void	ft_prepare_and_push(t_stck **stck_a, t_stck **stck_b,
 			int **instructions, int *j)
@@ -70,6 +87,12 @@ void	ft_prepare_and_push(t_stck **stck_a, t_stck **stck_b,
 	(*j)++;
 }
 
+/*
+ * [ft_shift_stack] 
+ * Ensures that the minimum value is on top of stack b,
+ * performing the most efficient rotation to accomplish it.
+ */
+
 void	ft_shift_stack(t_stck **stck_b, int **instructions)
 {
 	t_stck	min;
@@ -86,6 +109,17 @@ void	ft_shift_stack(t_stck **stck_b, int **instructions)
 		ft_choose_rotation(i, 'b', stck_b, instructions);
 }
 
+/*
+ * [ft_loop_buckets]
+ * The number of buckets is dependant on the size of the stack. 
+ * If the size is larger than 125 then the buckets are split into quarters,
+ * this number is chosen since for less than this cutoff the splitting is not
+ * worth it.
+ * For each pass, if the key pertains to the bucket, it is pushed to the correct
+ * location in b (some movements are usually necessary in b).
+ * If not, a is rotated.
+ */
+
 void	ft_loop_buckets(t_stck **stck_a, t_stck **stck_b, int size_a,
 			int **instructions)
 {
@@ -95,11 +129,11 @@ void	ft_loop_buckets(t_stck **stck_a, t_stck **stck_b, int size_a,
 	buckets.num_per_bucket = size_a / buckets.count;
 	ft_allocate_instructions(size_a, buckets.count, buckets.num_per_bucket,
 		instructions);
-	buckets.key = 2;
+	buckets.key = 0;
 	buckets.pass = -1;
 	buckets.total_size = size_a;
-	if (buckets.total_size > 100)
-		ft_split_buckets(stck_a, stck_b, buckets, instructions);
+	if (buckets.total_size > 125)
+		ft_split_buckets(stck_a, stck_b, &buckets, instructions);
 	while (++buckets.pass < buckets.count + 1)
 	{
 		while (buckets.key < buckets.num_per_bucket * (buckets.pass + 1)
@@ -115,6 +149,15 @@ void	ft_loop_buckets(t_stck **stck_a, t_stck **stck_b, int size_a,
 		}
 	}
 }
+
+/*
+ * [ft_large_sort]
+ * 	1. 	Find the keys corresponding to a bucket, push to b while sorting, repeat.
+ * 	2. 	Once all keys (except max and max - 1) are in b, shift b so max is on top
+ * 		and push to a.
+ * 	3.	An optimizing function is used to check if ra and rb appear consecutively
+ * 		and replace them with the appropiate number of rr.
+ */
 
 void	ft_large_sort(t_stck **stck_a, t_stck **stck_b)
 {

@@ -6,7 +6,7 @@
 /*   By: ogonzale <ogonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 16:22:34 by ogonzale          #+#    #+#             */
-/*   Updated: 2022/08/30 11:50:40 by ogonzale         ###   ########.fr       */
+/*   Updated: 2022/08/30 12:24:47 by ogonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void	ft_split_buckets(t_stck **stck_a, t_stck **stck_b, t_buckets buckets,
 	{
 		size_a = (*stck_a)[0].size;
 		if ((*stck_a)[size_a - 1].key % buckets.num_per_bucket
-				< buckets.num_per_bucket / 2)
+				>= buckets.num_per_bucket / 2)
 			ft_rotate('a', stck_a, instructions);
 		else
 			ft_push('b', stck_a, stck_b, instructions);
@@ -108,13 +108,20 @@ void	ft_split_buckets(t_stck **stck_a, t_stck **stck_b, t_buckets buckets,
 	while (++i < size_b)
 	{
 		if ((*stck_b)[(*stck_b)[0].size - 1].key % buckets.num_per_bucket
-				< 3 * buckets.num_per_bucket / 4)
+				 < buckets.num_per_bucket / 4)
 			ft_rotate('b', stck_b, instructions);
 		else
 			ft_push('a', stck_a, stck_b, instructions);
 	}
-	while ((*stck_b)[0].size != 0)
-		ft_push('a', stck_a, stck_b, instructions);
+	while ((*stck_b)[0].size > 2)
+	{
+		if ((*stck_b)[size_b - 1].key > 1)
+			ft_push('a', stck_a, stck_b, instructions);
+		else
+			ft_rotate('b', stck_b, instructions);
+	}
+	if ((*stck_b)[1].value < (*stck_a)[0].value)
+		ft_rotate('b', stck_b, instructions);
 }
 
 void	ft_loop_buckets(t_stck **stck_a, t_stck **stck_b, int size_a,
@@ -123,24 +130,23 @@ void	ft_loop_buckets(t_stck **stck_a, t_stck **stck_b, int size_a,
 	t_buckets	buckets;
 
 	buckets.count = 0.01 * size_a + 4;
-	//buckets.count = 9;
 	buckets.num_per_bucket = size_a / buckets.count;
 	ft_allocate_instructions(size_a, buckets.count, buckets.num_per_bucket,
 		instructions);
-	buckets.key = 0;
+	buckets.key = 2;
 	buckets.pass = -1;
 	buckets.total_size = size_a;
-	//if (buckets.total_size > 100)
-	//	ft_split_buckets(stck_a, stck_b, buckets, instructions);
+	if (buckets.total_size > 100)
+		ft_split_buckets(stck_a, stck_b, buckets, instructions);
 	while (++buckets.pass < buckets.count + 1)
 	{
 		while (buckets.key < buckets.num_per_bucket * (buckets.pass + 1)
-			&& (*stck_a)[0].size > 1)
+			&& (*stck_a)[0].size > 2)
 		{
 			size_a = (*stck_a)[0].size;
 			if ((*stck_a)[size_a - 1].key
 						< buckets.num_per_bucket * (buckets.pass + 1)
-						&& (*stck_a)[size_a - 1].key != buckets.total_size - 1)
+						&& (*stck_a)[size_a - 1].key < buckets.total_size - 2)
 				ft_prepare_and_push(stck_a, stck_b, instructions, &buckets.key);
 			else
 				ft_rotate('a', stck_a, instructions);
@@ -156,6 +162,8 @@ void	ft_large_sort(t_stck **stck_a, t_stck **stck_b)
 	size_a = (*stck_a)[0].size;
 	ft_loop_buckets(stck_a, stck_b, size_a, &instructions);
 	ft_shift_stack(stck_b, &instructions);
+	if ((*stck_a)[1].value > (*stck_a)[0].value)
+		ft_swap('a', stck_a, &instructions);
 	while ((*stck_b)[0].size > 0)
 		ft_push('a', stck_a, stck_b, &instructions);
 	ft_optimize_and_print_instructions(&instructions);

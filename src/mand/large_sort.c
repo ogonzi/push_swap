@@ -6,7 +6,7 @@
 /*   By: ogonzale <ogonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 16:22:34 by ogonzale          #+#    #+#             */
-/*   Updated: 2022/08/24 17:12:36 by ogonzale         ###   ########.fr       */
+/*   Updated: 2022/08/30 11:50:40 by ogonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,22 +86,54 @@ void	ft_shift_stack(t_stck **stck_b, int **instructions)
 		ft_choose_rotation(i, 'b', stck_b, instructions);
 }
 
+void	ft_split_buckets(t_stck **stck_a, t_stck **stck_b, t_buckets buckets,
+			int **instructions)
+{
+	int	i;
+	int	size_a;
+	int	size_b;
+
+	i = -1;
+	while (++i < buckets.total_size)
+	{
+		size_a = (*stck_a)[0].size;
+		if ((*stck_a)[size_a - 1].key % buckets.num_per_bucket
+				< buckets.num_per_bucket / 2)
+			ft_rotate('a', stck_a, instructions);
+		else
+			ft_push('b', stck_a, stck_b, instructions);
+	}
+	i = -1;
+	size_b = (*stck_b)[0].size;
+	while (++i < size_b)
+	{
+		if ((*stck_b)[(*stck_b)[0].size - 1].key % buckets.num_per_bucket
+				< 3 * buckets.num_per_bucket / 4)
+			ft_rotate('b', stck_b, instructions);
+		else
+			ft_push('a', stck_a, stck_b, instructions);
+	}
+	while ((*stck_b)[0].size != 0)
+		ft_push('a', stck_a, stck_b, instructions);
+}
+
 void	ft_loop_buckets(t_stck **stck_a, t_stck **stck_b, int size_a,
 			int **instructions)
 {
 	t_buckets	buckets;
 
-	buckets.count = 0.015 * size_a + 3.5;
+	buckets.count = 0.01 * size_a + 4;
+	//buckets.count = 9;
 	buckets.num_per_bucket = size_a / buckets.count;
 	ft_allocate_instructions(size_a, buckets.count, buckets.num_per_bucket,
 		instructions);
 	buckets.key = 0;
 	buckets.pass = -1;
 	buckets.total_size = size_a;
-	while (++buckets.pass < 2 * buckets.count + 1)
+	//if (buckets.total_size > 100)
+	//	ft_split_buckets(stck_a, stck_b, buckets, instructions);
+	while (++buckets.pass < buckets.count + 1)
 	{
-		if (buckets.pass == (buckets.count + 1) / 2)
-			buckets.num_per_bucket /= 2;
 		while (buckets.key < buckets.num_per_bucket * (buckets.pass + 1)
 			&& (*stck_a)[0].size > 1)
 		{

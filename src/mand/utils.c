@@ -6,7 +6,7 @@
 /*   By: ogonzale <ogonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 12:48:43 by ogonzale          #+#    #+#             */
-/*   Updated: 2022/08/24 10:22:13 by ogonzale         ###   ########.fr       */
+/*   Updated: 2022/08/30 13:37:42 by ogonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,12 @@ int	ft_is_ordered(t_stck **stck)
 			return (0);
 	}
 	return (1);
+}
+
+int	ft_get_buckets_count(int size)
+{
+	if (size < 100)
+		return (0.02 * size + 3.5);
+	else
+		return (0.01 * size + 4);
 }

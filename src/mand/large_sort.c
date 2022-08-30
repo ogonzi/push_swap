@@ -6,7 +6,7 @@
 /*   By: ogonzale <ogonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 16:22:34 by ogonzale          #+#    #+#             */
-/*   Updated: 2022/08/30 12:24:47 by ogonzale         ###   ########.fr       */
+/*   Updated: 2022/08/30 12:34:10 by ogonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,10 +98,20 @@ void	ft_split_buckets(t_stck **stck_a, t_stck **stck_b, t_buckets buckets,
 	{
 		size_a = (*stck_a)[0].size;
 		if ((*stck_a)[size_a - 1].key % buckets.num_per_bucket
-				>= buckets.num_per_bucket / 2)
+				>= 3 * buckets.num_per_bucket / 4)
 			ft_rotate('a', stck_a, instructions);
 		else
 			ft_push('b', stck_a, stck_b, instructions);
+	}
+	i = -1;
+	size_b = (*stck_b)[0].size;
+	while (++i < size_b)
+	{
+		if ((*stck_b)[(*stck_b)[0].size - 1].key % buckets.num_per_bucket
+				 < buckets.num_per_bucket / 2)
+			ft_rotate('b', stck_b, instructions);
+		else
+			ft_push('a', stck_a, stck_b, instructions);
 	}
 	i = -1;
 	size_b = (*stck_b)[0].size;

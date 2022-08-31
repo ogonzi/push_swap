@@ -6,7 +6,7 @@
 /*   By: ogonzale <ogonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 10:21:21 by ogonzale          #+#    #+#             */
-/*   Updated: 2022/08/30 18:09:21 by ogonzale         ###   ########.fr       */
+/*   Updated: 2022/08/31 09:56:51 by ogonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct s_buckets
 	int	pass;
 	int	key;
 	int	total_size;
+	int	mult;
 }		t_buckets;
 
 /* ft_atoi_mod.c */
@@ -72,4 +73,5 @@ void	ft_large_sort(t_stck **stck_a, t_stck **stck_b);
 /* large_sort_2 */
 void	ft_split_buckets(t_stck **stck_a, t_stck **stck_b, t_buckets *buckets,
 			int **instructions);
+void	ft_shift_stack(t_stck **stck_b, int **instructions);
 #endif

@@ -6,7 +6,7 @@
 /*   By: ogonzale <ogonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 12:50:44 by ogonzale          #+#    #+#             */
-/*   Updated: 2022/08/30 18:26:29 by ogonzale         ###   ########.fr       */
+/*   Updated: 2022/08/31 09:56:15 by ogonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,4 +87,26 @@ void	ft_split_buckets(t_stck **stck_a, t_stck **stck_b, t_buckets *buckets,
 	ft_push_two_quarters_to_a(stck_a, stck_b, *buckets, instructions);
 	ft_push_last_quarter_to_a(stck_a, stck_b, instructions);
 	buckets->key += 2;
+}
+
+/*
+ * [ft_shift_stack] 
+ * Ensures that the minimum value is on top of stack b,
+ * performing the most efficient rotation to accomplish it.
+ */
+
+void	ft_shift_stack(t_stck **stck_b, int **instructions)
+{
+	t_stck	min;
+	t_stck	max;
+	int		i;
+	int		size_b;
+
+	size_b = (*stck_b)[0].size;
+	ft_get_limits(&min, &max, stck_b);
+	i = 0;
+	while ((*stck_b)[size_b - i - 1].value != min.value)
+		i++;
+	while ((*stck_b)[0].value != min.value)
+		ft_choose_rotation(i, 'b', stck_b, instructions);
 }

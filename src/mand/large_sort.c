@@ -6,7 +6,7 @@
 /*   By: ogonzale <ogonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 16:22:34 by ogonzale          #+#    #+#             */
-/*   Updated: 2022/08/30 18:24:22 by ogonzale         ###   ########.fr       */
+/*   Updated: 2022/08/31 10:03:34 by ogonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,26 +87,16 @@ void	ft_prepare_and_push(t_stck **stck_a, t_stck **stck_b,
 	(*j)++;
 }
 
-/*
- * [ft_shift_stack] 
- * Ensures that the minimum value is on top of stack b,
- * performing the most efficient rotation to accomplish it.
- */
-
-void	ft_shift_stack(t_stck **stck_b, int **instructions)
+void	ft_init_buckets(t_buckets *buckets, int size_a)
 {
-	t_stck	min;
-	t_stck	max;
-	int		i;
-	int		size_b;
-
-	size_b = (*stck_b)[0].size;
-	ft_get_limits(&min, &max, stck_b);
-	i = 0;
-	while ((*stck_b)[size_b - i - 1].value != min.value)
-		i++;
-	while ((*stck_b)[0].value != min.value)
-		ft_choose_rotation(i, 'b', stck_b, instructions);
+	buckets->count = ft_get_buckets_count(size_a);
+	buckets->num_per_bucket = size_a / buckets->count;
+	buckets->key = 0;
+	buckets->pass = -1;
+	buckets->total_size = size_a;
+	buckets->mult = 2;
+	if (buckets->total_size > 125)
+		buckets->mult = 1;
 }
 
 /*
@@ -125,17 +115,16 @@ void	ft_loop_buckets(t_stck **stck_a, t_stck **stck_b, int size_a,
 {
 	t_buckets	buckets;
 
-	buckets.count = ft_get_buckets_count(size_a);
-	buckets.num_per_bucket = size_a / buckets.count;
+	ft_init_buckets(&buckets, size_a);
 	ft_allocate_instructions(size_a, buckets.count, buckets.num_per_bucket,
 		instructions);
-	buckets.key = 0;
-	buckets.pass = -1;
-	buckets.total_size = size_a;
 	if (buckets.total_size > 125)
 		ft_split_buckets(stck_a, stck_b, &buckets, instructions);
-	while (++buckets.pass < buckets.count + 1)
+	while (++buckets.pass < buckets.mult * buckets.count + 1)
 	{
+		if (buckets.total_size <= 125
+			&& buckets.pass == (buckets.count + 1) / 2)
+			buckets.num_per_bucket /= 2;
 		while (buckets.key < buckets.num_per_bucket * (buckets.pass + 1)
 			&& (*stck_a)[0].size > 2)
 		{

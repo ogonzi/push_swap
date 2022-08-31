@@ -26,6 +26,7 @@
 ## About
 
 This project is about sorting data on a stack, with a limited set of instructions, using the lowest possible number of actions. To succeed various types of sorting algorithms must be manipulated and chosen for optimized data sorting.
+
 For stacks of size smaller or equal than 5 the instructions are hardcoded, while for stacks larger then 5 a bucket sort algorithm is used. An optimization is added to bucket sort if the stack size is larger than 125, where each bucket is divided into quarters to minimize the number of moves further along the line.
 ## Features
 

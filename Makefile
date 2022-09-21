@@ -6,7 +6,7 @@
 #    By: ogonzale <ogonzale@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/18 10:00:13 by ogonzale          #+#    #+#              #
-#    Updated: 2022/09/21 13:31:06 by ogonzale         ###   ########.fr        #
+#    Updated: 2022/09/21 15:12:43 by ogonzale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,10 +22,8 @@ HEADER 		= -I$(INC) -I$(LIBFT_DIR)$(INC)
 SRC_DIR 	:= src/
 OBJ_DIR 	:= obj/
 CC 			:= cc
-CFLAGS 		:= -Wall -Wextra -Werror -g3
-FSANITIZE	:= -fsanitize=address -g3
+CFLAGS 		:= -Wall -Wextra -Werror
 RM 			:= rm -f
-ECHO		:= echo -e
 UNAME		:= $(shell uname)
 
 # Colors

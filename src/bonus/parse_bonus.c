@@ -6,11 +6,10 @@
 /*   By: ogonzale <ogonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 12:46:13 by ogonzale          #+#    #+#             */
-/*   Updated: 2022/08/24 12:38:21 by ogonzale         ###   ########.fr       */
+/*   Updated: 2022/09/21 15:01:01 by ogonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker_bonus.h"
 #include "utils_bonus.h"
 
 void	ft_check_duplicate(t_stck **stck_a, int i)

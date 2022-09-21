@@ -6,7 +6,7 @@
 /*   By: ogonzale <ogonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 12:49:48 by ogonzale          #+#    #+#             */
-/*   Updated: 2022/08/24 16:58:17 by ogonzale         ###   ########.fr       */
+/*   Updated: 2022/09/21 14:59:56 by ogonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # define ERR_INST	"Error: used non-valid instruction"
 # define ERROR		"Error"
 
-/* utils.c */
+/* utils_bonus.c */
 
 void	terminate(char *s);
 void	ft_allocate_stacks(t_stck **stck_a, t_stck **stck_b, int argc);

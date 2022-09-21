@@ -6,15 +6,13 @@
 /*   By: ogonzale <ogonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 11:00:53 by ogonzale          #+#    #+#             */
-/*   Updated: 2022/08/24 16:55:30 by ogonzale         ###   ########.fr       */
+/*   Updated: 2022/09/21 14:49:40 by ogonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker_bonus.h"
 #include "utils_bonus.h"
 #include "ft_printf.h"
 #include <stdlib.h>
-#include <stdio.h>
 
 int	main(int argc, char **argv)
 {

@@ -6,11 +6,10 @@
 /*   By: ogonzale <ogonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 12:53:01 by ogonzale          #+#    #+#             */
-/*   Updated: 2022/08/24 17:20:47 by ogonzale         ###   ########.fr       */
+/*   Updated: 2022/09/21 14:55:02 by ogonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker_bonus.h"
 #include "utils_bonus.h"
 #include "get_next_line.h"
 #include "libft.h"

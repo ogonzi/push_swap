@@ -6,7 +6,7 @@
 #    By: ogonzale <ogonzale@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/18 10:00:13 by ogonzale          #+#    #+#              #
-#    Updated: 2022/08/30 12:52:03 by ogonzale         ###   ########.fr        #
+#    Updated: 2022/09/21 13:31:06 by ogonzale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ BNAME		:= checker
 INC		 	:= inc/
 LIBFT_DIR	:= lib/libft/
 LIBFT		:= $(LIBFT_DIR)libft.a
+MAKEFILE	:= Makefile
 HEADER 		= -I$(INC) -I$(LIBFT_DIR)$(INC)
 SRC_DIR 	:= src/
 OBJ_DIR 	:= obj/
@@ -68,7 +69,7 @@ $(NAME):	$(LIBFT) $(OBJ)
 	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME)
 	@echo "$(GREEN)$(NAME) compiled!$(DEF_COLOR)"
 
-$(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJF)
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c $(MAKEFILE) | $(OBJF)
 	@echo "$(YELLOW)Compiling: $< $(DEF_COLOR)"
 	@$(CC) -MT $@ -MMD -MP $(CFLAGS) $(HEADER) -O3 -c $< -o $@
 

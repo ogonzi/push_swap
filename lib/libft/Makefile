@@ -6,7 +6,7 @@
 #    By: ogonzale <ogonzale@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/18 10:00:13 by ogonzale          #+#    #+#              #
-#    Updated: 2022/06/15 11:08:36 by ogonzale         ###   ########.fr        #
+#    Updated: 2022/09/21 13:32:14 by ogonzale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -91,7 +91,7 @@ $(NAME):	$(OBJ)
 	@$(AR) $(NAME) $(OBJ)
 	@echo "$(GREEN)Libft compiled!$(DEF_COLOR)"
 
-$(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJF)
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c Makefile | $(OBJF)
 	@echo "$(YELLOW)Compiling: $< $(DEF_COLOR)"
 	@$(CC) -MT $@ -MMD -MP $(CFLAGS) $(HEADER) -c $< -o $@
 

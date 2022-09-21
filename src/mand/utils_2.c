@@ -6,14 +6,12 @@
 /*   By: ogonzale <ogonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 10:20:34 by ogonzale          #+#    #+#             */
-/*   Updated: 2022/08/24 17:20:07 by ogonzale         ###   ########.fr       */
+/*   Updated: 2022/09/21 14:47:07 by ogonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
 #include "ft_printf.h"
 #include "utils.h"
-#include <stdio.h>
 
 void	ft_get_limits(t_stck *min, t_stck *max, t_stck **stck)
 {

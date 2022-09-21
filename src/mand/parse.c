@@ -6,15 +6,12 @@
 /*   By: ogonzale <ogonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 12:46:13 by ogonzale          #+#    #+#             */
-/*   Updated: 2022/08/22 11:07:00 by ogonzale         ###   ########.fr       */
+/*   Updated: 2022/09/21 14:38:42 by ogonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
-#include "push_swap.h"
 #include "libft.h"
-#include <stdlib.h>
-#include <stdio.h>
 
 void	ft_check_duplicate(t_stck **stck_a, int i)
 {

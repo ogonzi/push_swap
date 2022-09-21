@@ -6,14 +6,12 @@
 /*   By: ogonzale <ogonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 16:22:34 by ogonzale          #+#    #+#             */
-/*   Updated: 2022/08/31 10:03:34 by ogonzale         ###   ########.fr       */
+/*   Updated: 2022/09/21 14:39:42 by ogonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
 #include "utils.h"
 #include <stdlib.h>
-#include <stdio.h>
 
 /*
  * [ft_manage_extremes]

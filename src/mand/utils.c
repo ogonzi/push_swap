@@ -6,15 +6,13 @@
 /*   By: ogonzale <ogonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 12:48:43 by ogonzale          #+#    #+#             */
-/*   Updated: 2022/08/31 09:06:00 by ogonzale         ###   ########.fr       */
+/*   Updated: 2022/09/21 14:45:18 by ogonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
 #include "libft.h"
 #include "utils.h"
 #include <stdlib.h>
-#include <stdio.h>
 
 void	terminate(char *s)
 {

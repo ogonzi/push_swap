@@ -6,11 +6,10 @@
 /*   By: ogonzale <ogonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 12:50:44 by ogonzale          #+#    #+#             */
-/*   Updated: 2022/08/31 09:56:15 by ogonzale         ###   ########.fr       */
+/*   Updated: 2022/09/21 14:42:40 by ogonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
 #include "utils.h"
 
 void	ft_push_quarter_to_b(t_stck **stck_a, t_stck **stck_b,

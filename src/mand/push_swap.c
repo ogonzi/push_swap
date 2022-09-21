@@ -6,14 +6,12 @@
 /*   By: ogonzale <ogonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 11:00:53 by ogonzale          #+#    #+#             */
-/*   Updated: 2022/08/23 08:22:41 by ogonzale         ###   ########.fr       */
+/*   Updated: 2022/09/21 14:35:40 by ogonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
 #include "utils.h"
 #include <stdlib.h>
-#include <stdio.h>
 
 int	main(int argc, char **argv)
 {

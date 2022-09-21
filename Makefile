@@ -6,7 +6,7 @@
 #    By: ogonzale <ogonzale@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/18 10:00:13 by ogonzale          #+#    #+#              #
-#    Updated: 2022/09/21 15:12:43 by ogonzale         ###   ########.fr        #
+#    Updated: 2022/09/21 16:43:08 by ogonzale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ INC		 	:= inc/
 LIBFT_DIR	:= lib/libft/
 LIBFT		:= $(LIBFT_DIR)libft.a
 MAKEFILE	:= Makefile
-HEADER 		= -I$(INC) -I$(LIBFT_DIR)$(INC)
+HEADER 		= -I $(INC) -I $(LIBFT_DIR)$(INC)
 SRC_DIR 	:= src/
 OBJ_DIR 	:= obj/
 CC 			:= cc
@@ -59,17 +59,16 @@ BOBJ 		= $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_BFILES)))
 
 ###
 
-OBJF := .cache_exists
-
-all:	$(NAME)
-
-$(NAME):	$(LIBFT) $(OBJ)
-	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME)
-	@echo "$(GREEN)$(NAME) compiled!$(DEF_COLOR)"
-
-$(OBJ_DIR)%.o: $(SRC_DIR)%.c $(MAKEFILE) | $(OBJF)
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c $(MAKEFILE)
+	@mkdir -p $(dir $@)
 	@echo "$(YELLOW)Compiling: $< $(DEF_COLOR)"
 	@$(CC) -MT $@ -MMD -MP $(CFLAGS) $(HEADER) -O3 -c $< -o $@
+
+all: $(LIBFT) $(NAME)
+
+$(NAME): $(OBJ) 
+	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME)
+	@echo "$(GREEN)$(NAME) compiled!$(DEF_COLOR)"
 
 $(OBJF):
 	@mkdir -p $(OBJ_DIR)
@@ -100,9 +99,9 @@ fclean:	clean
 re:	fclean all
 	@echo "$(GREEN)Cleaned and rebuilt everything for $(NAME).$(DEF_COLOR)"
 
-bonus:	$(BNAME)
+bonus:	$(LIBFT) $(BNAME)
 
-$(BNAME):	$(BOBJ) $(LIBFT)
+$(BNAME):	$(BOBJ)
 	@$(CC) $(CFLAGS) $(BOBJ) $(LIBFT) -o $(BNAME)
 	@echo "$(GREEN)$(BNAME) compiled!$(DEF_COLOR)"
 

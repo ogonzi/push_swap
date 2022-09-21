@@ -6,7 +6,7 @@
 #    By: ogonzale <ogonzale@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/18 10:00:13 by ogonzale          #+#    #+#              #
-#    Updated: 2022/09/21 16:43:08 by ogonzale         ###   ########.fr        #
+#    Updated: 2022/09/21 16:55:13 by ogonzale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,14 +17,12 @@ BNAME		:= checker
 INC		 	:= inc/
 LIBFT_DIR	:= lib/libft/
 LIBFT		:= $(LIBFT_DIR)libft.a
-MAKEFILE	:= Makefile
-HEADER 		= -I $(INC) -I $(LIBFT_DIR)$(INC)
+INCLUDE		:= -I $(INC) -I $(LIBFT_DIR)$(INC)
 SRC_DIR 	:= src/
 OBJ_DIR 	:= obj/
 CC 			:= cc
 CFLAGS 		:= -Wall -Wextra -Werror
 RM 			:= rm -f
-UNAME		:= $(shell uname)
 
 # Colors
 
@@ -59,22 +57,16 @@ BOBJ 		= $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_BFILES)))
 
 ###
 
-$(OBJ_DIR)%.o: $(SRC_DIR)%.c $(MAKEFILE)
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c Makefile
 	@mkdir -p $(dir $@)
 	@echo "$(YELLOW)Compiling: $< $(DEF_COLOR)"
-	@$(CC) -MT $@ -MMD -MP $(CFLAGS) $(HEADER) -O3 -c $< -o $@
+	@$(CC) -MT $@ -MMD -MP $(CFLAGS) $(INCLUDE) -c $< -o $@
 
 all: $(LIBFT) $(NAME)
 
 $(NAME): $(OBJ) 
 	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME)
 	@echo "$(GREEN)$(NAME) compiled!$(DEF_COLOR)"
-
-$(OBJF):
-	@mkdir -p $(OBJ_DIR)
-	@mkdir -p $(OBJ_DIR)$(MAND_DIR)
-	@mkdir -p $(OBJ_DIR)$(BONUS_DIR)
-	@touch $(OBJF)
 
 $(LIBFT):
 	@make -sC $(LIBFT_DIR)

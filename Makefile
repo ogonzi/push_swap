@@ -6,7 +6,7 @@
 #    By: ogonzale <ogonzale@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/18 10:00:13 by ogonzale          #+#    #+#              #
-#    Updated: 2022/09/21 16:55:13 by ogonzale         ###   ########.fr        #
+#    Updated: 2022/09/27 14:01:16 by ogonzale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,7 +76,7 @@ clean:
 	@make clean -sC $(LIBFT_DIR)
 	@echo "$(BLUE)Libft object and dependency files cleaned.$(DEF_COLOR)"
 	@$(RM) $(OBJF)
-	@echo "$(BLUE)Pipex object and dependency files cleaned.$(DEF_COLOR)"
+	@echo "$(BLUE)$(NAME) object and dependency files cleaned.$(DEF_COLOR)"
 
 fclean:	clean
 	@$(RM) $(NAME)
